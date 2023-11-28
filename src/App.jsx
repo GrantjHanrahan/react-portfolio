@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import Contact from './components/Contact'
+import Portfolio from './components/Portfolio'
 import Works from './components/Works'
 import Who from './components/Who'
 import Hero from './components/Hero'
@@ -24,6 +25,7 @@ function App() {
       <Hero/>
       <Who/>
       <Works/>
+      <Portfolio/>
       <Contact/>
     </Container>
   )
