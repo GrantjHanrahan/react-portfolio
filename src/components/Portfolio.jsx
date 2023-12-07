@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 
 const items = [
@@ -155,7 +155,7 @@ const Single = ({ item }) => {
           <ImageContainer>
             <Image src={item.img} alt="Portfolio image" />
           </ImageContainer>
-          <TextContainer as={motion.div}>
+          <TextContainer as={motion.div} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Heading>{item.title}</Heading>
             <Desc>{item.desc}</Desc>
             <Button>See Demo</Button>
@@ -181,11 +181,15 @@ const Portfolio = () => {
     <PortfolioWrapper ref={ref}>
       <Progress>
         <h1>Featured Works</h1>
-        <ProgressBar as={motion.div} style={{ scaleX }} />
+        {/* <ProgressBar as={motion.div} style={{ scaleX }} /> */}
       </Progress>
-      {items.map((item) => (
-        <Single item={item} key={item.id} />
-      ))}
+      <AnimatePresence>
+        {items.map((item) => (
+          <motion.div key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <Single item={item} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </PortfolioWrapper>
   );
 };
